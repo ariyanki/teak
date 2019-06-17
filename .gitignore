@@ -1,12 +1,19 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+.DS_Store
+/.vscode
+/.idea
+/gin-bin
+/vendor
+/cfg/config.json
+/cfg/dev.json
+/cfg/testing.json
+/bin
+/teak
+/.scannerwork/
+/coverage.out
+/report.json
+/teak.db
+/teak_test.db
+/log
 
-# Test binary, build with `go test -c`
-*.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+# For Development Testing Only
+test.go
