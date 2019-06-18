@@ -15,10 +15,11 @@ var (
 	AppPath string
 )
 
-func LoadConfig() {
+func init() {
 	// set config based on env
 	loadEnvVars()
-	loadSQLite()
+
+	OpenDbPool()
 }
 
 func loadEnvVars() {

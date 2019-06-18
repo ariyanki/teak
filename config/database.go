@@ -1,8 +1,16 @@
 package config
 
 import (
-	"database/sql"
+	"strconv"
+	"time"
+
 	"github.com/spf13/viper"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+)
+
+var (
+	DB             *gorm.DB
 )
 
 type Database struct {
@@ -32,8 +40,25 @@ func LoadDBConfig(name string) Database {
 	return conf
 }
 
-func SqliteOpen() (*sql.DB, error) {
-	conf := LoadDBConfig("sqlite")
-	db, err := sql.Open("sqlite3", AppPath+"/"+conf.DBName+".db")
-	return db, err
+// MysqlConnect connect to mysql using config name. return *gorm.DB incstance
+func MysqlConnect(configName string) *gorm.DB {
+	mysql := LoadDBConfig(configName)
+	connection, err := gorm.Open("mysql", mysql.User+":"+mysql.Password+"@tcp("+mysql.Host+":"+strconv.Itoa(mysql.Port)+")/"+mysql.DBName+"?charset=utf8&parseTime=True&loc=Local")
+	if err != nil {
+		panic(err)
+	}
+
+	if mysql.DebugMode {
+		return connection.Debug()
+	}
+
+	return connection
+}
+
+func OpenDbPool() {
+	DB = MysqlConnect("mysql")
+	pool := viper.Sub("database.mysql.pool")
+	DB.DB().SetMaxOpenConns(pool.GetInt("maxOpenConns"))
+	DB.DB().SetMaxIdleConns(pool.GetInt("maxIdleConns"))
+	DB.DB().SetConnMaxLifetime(pool.GetDuration("maxLifetime") * time.Second)
 }

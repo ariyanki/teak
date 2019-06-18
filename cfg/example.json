@@ -1,20 +1,19 @@
 {
 	"port": "1123",
+	"jwtSign": "secret",
 	"database": {
-		"sqlite": {
-			"db_name": "teak_test"
-		},
-		"amqp": {
-			"api_url": "http://localhost:15672",
+		"mysql": {
+			"driver": "mysql",
 			"host": "localhost",
-			"port": 5672,
-			"user": "guest",
-			"password": "guest",
-			"reconnect_retry": 10,
-			"reconnect_interval": 5,
-			"debug": true,
-			"queue_name": "Retrier_test",
-			"consumer_limit": 3
+			"user": "root",
+			"password": "",
+			"db_name": "teak",
+			"port": 3306,
+			"pool": {
+				"maxOpenConns": 100,
+				"maxIdleConns": 10,
+				"maxLifetime": 300
+			}
 		}
 	},
 	"logdir": "log",

@@ -7,7 +7,6 @@ import (
 	"context"
 	"teak/routes"
 	"teak/logger"
-	"teak/config"
 	
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -23,8 +22,6 @@ var startCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Start teak http service",
 	Run: func(cmd *cobra.Command, args []string) {
-		config.LoadConfig()
-
 		e := echo.New()
 		e.Pre(middleware.RemoveTrailingSlash())
 		e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{

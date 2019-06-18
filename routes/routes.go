@@ -7,5 +7,6 @@ import (
 )
 
 func Api(e *echo.Echo) {
-	// index route
+	// user
+	e.POST("login", c.LoginUser)
 }
