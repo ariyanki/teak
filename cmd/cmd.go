@@ -14,7 +14,6 @@ var rootCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			// cmd.Help()
 			cmd.Run(startCmd, []string{})
 			os.Exit(0)
 		}

@@ -38,13 +38,6 @@ var startCmd = &cobra.Command{
 		// Handler for putting teak request and response timestamp. This used for get elapsed time
 		e.Use(ServiceRequestTime)
 
-		e.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
-			if username == viper.GetString("basic_auth.username") && password == viper.GetString("basic_auth.password") {
-				return true, nil
-			}
-			return false, nil
-		}))
-
 		routes.Api(e)
 
 		// Start server
