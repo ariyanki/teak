@@ -23,17 +23,15 @@ var (
 )
 
 func init() {
-	// logdir := config.AppPath + "/" + viper.GetString("logdir")
+	
 	logdir := viper.GetString("logdir")
 	logMaxAge := viper.GetInt("log_max_age")
 	debug := viper.GetBool("debug")
 
 	// default teak log dir setting
 	if !strings.HasPrefix(logdir, "/") {
-		if logdir = os.Getenv("TEAK_APP_PATH"); logdir == "" {
-			logdir = os.Getenv("GOPATH") + "/src/teak"
-		}
-		logdir = logdir + "/log"
+		dir, _ := os.Getwd()
+		logdir = dir + "/log"
 	}
 
 	if logMaxAge < 1 {
