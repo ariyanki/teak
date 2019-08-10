@@ -1,12 +1,14 @@
 package config
 
 import (
+	"flag"
 	"strconv"
 	"time"
 
 	"github.com/spf13/viper"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	mocket "github.com/selvatico/go-mocket"
 )
 
 var (
@@ -55,8 +57,26 @@ func MysqlConnect(configName string) *gorm.DB {
 	return connection
 }
 
+//MysqlConnectTest connect to mysql using config name. return *gorm.DB incstance
+func MysqlConnectTest(configName string) *gorm.DB {
+	mocket.Catcher.Register()
+	mocket.Catcher.Logging = true
+	connection, err := gorm.Open(mocket.DriverName, "connection_string")
+
+	if err != nil {
+		panic(err)
+	}
+
+	return connection
+}
+
+//OpenDbPool OpenDbPool
 func OpenDbPool() {
-	DB = MysqlConnect("mysql")
+	if flag.Lookup("test.v") == nil {
+		DB = MysqlConnect("mysql")
+	} else {
+		DB = MysqlConnectTest("mysql")
+	}
 	pool := viper.Sub("database.mysql.pool")
 	DB.DB().SetMaxOpenConns(pool.GetInt("maxOpenConns"))
 	DB.DB().SetMaxIdleConns(pool.GetInt("maxIdleConns"))

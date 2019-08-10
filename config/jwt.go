@@ -6,12 +6,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+//JwtCustomClaims JwtCustomClaims
 type JwtCustomClaims struct {
 	ID       int    `json:"id"`
 	Username string `json:"username"`
 	jwt.StandardClaims
 }
 
+//JwtConfig JwtConfig
 var JwtConfig middleware.JWTConfig
 
 func init() {

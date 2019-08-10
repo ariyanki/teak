@@ -1,5 +1,9 @@
 {
 	"port": "1123",
+	"basic_auth": {
+		"username": "teak",
+		"password": "123456"
+	},
 	"jwtSign": "secret",
 	"database": {
 		"mysql": {

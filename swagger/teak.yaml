@@ -1,0 +1,235 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Swagger Teak"
+host: "teak.ariyanki.net"
+schemes:
+- "https"
+paths:
+  /execute:
+    post:
+      tags:
+      - "Execute"
+      summary: ""
+      description: ""
+      operationId: "execute"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Content-Type"
+        in: "header"
+        required: false
+        type: "string"
+        description: "Request Content Type"
+        default: "application/json"
+      - name: "Authorization"
+        in: "header"
+        required: false
+        type: "string"
+        description: "Basic Authorization"
+        default: "Basic xxx"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/ExecuteRequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ExecuteResponse"
+  /biller:
+    get:
+      tags:
+      - "Biller"
+      summary: "Get Biller List"
+      produces:
+      - "application/json"
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer Authorization
+        required: true
+        x-example: Bearer xxx
+        type: string
+      responses:
+        200:
+          description: "Biller List"
+  /biller/{id}/config:
+    get:
+      tags:
+      - "Biller"
+      summary: "Get Biller Config"
+      produces:
+      - "application/json"
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer Authorization
+        required: true
+        x-example: Bearer xxx
+        type: string
+      - name: "id"
+        in: "path"
+        description: "Biller ID"
+        required: true
+        x-example: 6
+        type: string
+      responses:
+        400:
+          description: "Biller ID/Config not found"
+        200:
+          description: "Biller Config"
+    post:
+      tags:
+      - "Biller"
+      summary: "Save Biller Config"
+      produces:
+      - "application/json"
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content Type
+        x-example: application/json
+        required: true
+        type: string
+      - name: Authorization
+        in: header
+        description: Bearer Authorization
+        required: true
+        x-example: Bearer xxx
+        type: string
+      - name: "id"
+        in: "path"
+        description: "Biller ID"
+        required: true
+        x-example: 6
+        type: string
+      - name: body
+        in: body
+        required: true
+        schema: 
+          type: object
+          example: {"key":"value"}
+      responses:
+        400:
+          description: "Invalid Biller ID"
+        422:
+          description: "Entity Error"
+        200:
+          description: "Biller Config"
+definitions:
+  ExecuteRequest:
+    type: "object"
+    properties:
+      command_type:
+        type: "string"
+        example: "purchase"
+        description: "available command_type: purchase, advise, reversal"
+      transaction_id:
+        type: "integer"
+        description: "kraken transaction id"
+        example: 123456
+      transaction_biller_id:
+        type: "integer"
+        description: "kraken transaction biller id"
+        example: 123456
+      remote_transaction_id:
+        type: "string"
+        description: "id from biller, use for advise and reversal"
+        example: "value"
+      remote_product_id:
+        type: "string"
+        description: "product id for biller"
+        example: "12"
+      customer_id:
+        type: "string"
+        description: "kraken customer id"
+        example: "08123456789"
+      partner_id:
+        type: "integer"
+        description: "kraken partner id"
+        example: 1
+      product_id:
+        type: "integer"
+        description: "kraken product id"
+        example: 1
+      biller_id:
+        type: "integer"
+        description: "kraken biller id"
+        example: "08123456789"
+      biller_label:
+        type: "string"
+        description: "kraken biller label"
+        example: "biller"
+      counter:
+        type: "string"
+        description: "kraken counter"
+        example: "08123456789"
+      rawdata:
+        type: "string"
+        description: "raw data for product inquiry"
+        example: ""
+    required: 
+    - command_type
+    - transaction_id
+    - transaction_biller_id
+    - biller_id
+    - biller_label
+  ExecuteResponse:
+    type: "object"
+    properties:
+      transaction_id:
+        type: "integer"
+        description: "kraken transaction id"
+        example: 123456
+      transaction_biller_id:
+        type: "integer"
+        description: "kraken transaction biller id"
+        example: 123456
+      remote_transaction_id:
+        type: "string"
+        description: "id from biller, use for advise and reversal"
+        example: "value"
+      remote_product_id:
+        type: "string"
+        description: "product id for biller"
+        example: "12"
+      customer_id:
+        type: "string"
+        description: "kraken customer id"
+        example: "08123456789"
+      response_code:
+        type: "string"
+        description: "Notify Response Code"
+        example: "00"
+      price:
+        type: "integer"
+        description: "kraken transaction biller id"
+        example: 1000
+      amount:
+        type: "integer"
+        description: "kraken transaction biller id"
+        example: 2000
+      data:
+        type: "object"
+        description: "Notify Response Message"
+        properties:
+          serial_number:
+            type: "string"
+            description: "Serial Number"
+            example: "0051003619319900"
+          biller_rescode:
+            type: "string"
+            description: "Biller response code"
+            example: "0000"
+          message:
+            type: "string"
+            description: "Response Message"
+            example: "success"
+          rawdata:
+            type: "string"
+            description: "Message Raw Data"
+            example: "Pengisian Voucher sebesar 25000 ke nomor 085363783000 pada tanggal 18/07/2019 09:54:44 telah berhasil dengan no ref <0051003619319900>"
+        

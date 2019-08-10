@@ -61,15 +61,15 @@
   version = "v1.0"
 
 [[projects]]
-  digest = "1:cef043bd5b80782d55de321d4ffc86af97b8382794c31d0119c139b258e37ea7"
+  digest = "1:6d39be33a917111436132ff319562545899eaeca7039a1bfffd0cd0246990d78"
   name = "github.com/jinzhu/gorm"
   packages = [
     ".",
     "dialects/mysql",
   ]
   pruneopts = "UT"
-  revision = "01b66011427614f01e84a473b0303c917179f2a0"
-  version = "v1.9.9"
+  revision = "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4"
+  version = "v1.9.10"
 
 [[projects]]
   digest = "1:01ed62f8f4f574d8aff1d88caee113700a2b44c42351943fa73cc1808f736a50"
@@ -144,12 +144,12 @@
   version = "v0.0.8"
 
 [[projects]]
-  digest = "1:4a49346ca45376a2bba679ca0e83bec949d780d4e927931317904bad482943ec"
+  digest = "1:79e87abf06b873987dee86598950f5b51732ac454d5a5cab6445a14330e6c9e3"
   name = "github.com/mattn/go-sqlite3"
   packages = ["."]
   pruneopts = "UT"
-  revision = "c7c4067b79cc51e6dfdcef5c702e74b1e0fa7c75"
-  version = "v1.10.0"
+  revision = "b612a2feea6aa87c6d052d9086572551df06497e"
+  version = "v1.11.0"
 
 [[projects]]
   digest = "1:53bc4cd4914cd7cd52139990d5170d6dc99067ae31c56530621b18b35fc30318"
@@ -202,6 +202,14 @@
   pruneopts = "UT"
   revision = "acf3980132bfcdc48638724e6e3d9e5749b85999"
   version = "v1.14.3"
+
+[[projects]]
+  digest = "1:7e704bce17074e862cfe9e4c2849320c2628fc3501b7d0795c589a427ef2bf50"
+  name = "github.com/selvatico/go-mocket"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c368d4162be502eea110ae12fb85e98567b0f1e6"
+  version = "v1.0.7"
 
 [[projects]]
   digest = "1:bb495ec276ab82d3dd08504bbc0594a65de8c3b22c6f2aaa92d05b73fbf3a82e"
@@ -263,12 +271,12 @@
   version = "v1.3.0"
 
 [[projects]]
-  digest = "1:4fbfbf1f28ca0cfd7646a4a71560b5b41763fb57589bd06cd3c075cf022abf93"
+  digest = "1:0347fb0e6285667b1db3433577cc6454e719c4119d0e9b993b8df3a1c181f67f"
   name = "github.com/thedevsaddam/govalidator"
   packages = ["."]
   pruneopts = "UT"
-  revision = "3ec9f4b2b1273b1b2fe2edd5afdbc2a819b3e511"
-  version = "v1.9.7"
+  revision = "01bf6ba67ac42ba976ff56c550a95ad8010cfa3e"
+  version = "v1.9.8"
 
 [[projects]]
   digest = "1:c468422f334a6b46a19448ad59aaffdfc0a36b08fdcc1c749a0b29b6453d7e59"
@@ -288,7 +296,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:efb99b3adaaa4e28d4e1d57f78df9516f0728cf7466c65805cb0bec262255069"
+  digest = "1:86a2feed7a6be48a559a2c869a7073922997e185f8b6ea260ce9037bd0b3ba12"
   name = "golang.org/x/crypto"
   packages = [
     "acme",
@@ -297,7 +305,7 @@
     "blowfish",
   ]
   pruneopts = "UT"
-  revision = "5c40567a22f818bd14a1ea7245dad9f8ef0691aa"
+  revision = "4def268fd1a49955bfb3dda92fe3db4f924f2285"
 
 [[projects]]
   branch = "master"
@@ -305,15 +313,15 @@
   name = "golang.org/x/net"
   packages = ["idna"]
   pruneopts = "UT"
-  revision = "d28f0bde5980168871434b95cfc858db9f2a7a99"
+  revision = "ca1201d0de80cfde86cb01aea620983605dfe99b"
 
 [[projects]]
   branch = "master"
-  digest = "1:249fd56fb36a223aee164e2dc35e3b3a1b92dd3873dfb60216280b9fb9d4a784"
+  digest = "1:fdfd985fe7956d77128572032636b5c1b7b58a81acd7089e96923e2f9539c573"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "15dcb6c0061f497a3f66e3ea034b629c6dd4d99e"
+  revision = "51ab0e2deafac1f46c46ad59cf0921be2f180c3d"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -371,6 +379,7 @@
     "github.com/mattn/go-sqlite3",
     "github.com/pressly/goose",
     "github.com/rs/zerolog",
+    "github.com/selvatico/go-mocket",
     "github.com/spf13/cobra",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",

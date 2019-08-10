@@ -38,12 +38,12 @@ var startCmd = &cobra.Command{
 		// Handler for putting teak request and response timestamp. This used for get elapsed time
 		e.Use(ServiceRequestTime)
 
-		routes.Api(e)
+		routes.API(e)
 
 		// Start server
 		// e.Logger.Fatal(e.Start(":8000"))
 		go func() {
-			if err := e.Start(":"+viper.GetString("port")); err != nil {
+			if err := e.Start(":" + viper.GetString("port")); err != nil {
 				e.Logger.Info("Shutting down the server")
 			}
 		}()

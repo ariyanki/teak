@@ -6,6 +6,7 @@
 /cfg/config.json
 /cfg/dev.json
 /cfg/testing.json
+/cfg/temp*
 /bin
 /teak
 /.scannerwork/
@@ -14,6 +15,8 @@
 /teak.db
 /teak_test.db
 /log
+Dockerfile-*
+kubestaging*
 
 # For Development Testing Only
 test.go

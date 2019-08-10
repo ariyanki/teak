@@ -62,7 +62,6 @@ func init() {
 	}
 	zerolog.TimeFieldFormat = "2006-01-02T15:04:05.000000"
 	Logger = zerolog.New(teakLog).With().Timestamp().Logger()
-	//Logger = log.New(teakLog, "Teak:", log.Lshortfile)
 }
 
 // Output duplicates the global logger and sets w as its output.
