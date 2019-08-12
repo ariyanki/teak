@@ -8,10 +8,12 @@ import (
 
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
+
+	"teak/modules/test"
 )
 
 func TestLoginUser(t *testing.T) {
-	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(userJSON))
+	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(test.UserJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -22,5 +24,4 @@ func TestLoginUser(t *testing.T) {
 	if assert.NoError(t, h) {
 		assert.Equal(t, http.StatusOK, rec.Code)
 	}
-	
 }

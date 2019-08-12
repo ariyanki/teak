@@ -2,5 +2,6 @@ package base
 
 
 var (
-	// Put Global Variable Here
+	InvalidAccountMsg = "Invalid username or password"
+	UserDisabledMsg = "User disabled"
 )

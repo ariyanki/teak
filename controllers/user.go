@@ -4,6 +4,7 @@ import (
 	"teak/config"
 	"teak/models"
 	"teak/presenter"
+	"teak/base"
 
 	"net/http"
 	"time"
@@ -27,9 +28,9 @@ func LoginUser(c echo.Context) error {
 	c.Bind(login)
 
 	if db.Where("username = ?", login.Username).First(&user).RecordNotFound() {
-		return c.JSON(http.StatusUnauthorized, map[string]interface{}{"message": "Invalid username or password"})
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{"message": base.InvalidAccountMsg})
 	} else if !user.IsActive {
-		return c.JSON(http.StatusUnauthorized, map[string]interface{}{"message": "User disabled"})
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{"message": base.UserDisabledMsg})
 	} else if CheckPasswordHash(login.Password, user.Password) {
 
 		// Set custom claims
@@ -53,7 +54,7 @@ func LoginUser(c echo.Context) error {
 			"token": t,
 		})
 	} else {
-		return c.JSON(http.StatusUnauthorized, map[string]interface{}{"message": "Invalid username or password"})
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{"message": base.InvalidAccountMsg})
 	}
 
 	return echo.ErrUnauthorized

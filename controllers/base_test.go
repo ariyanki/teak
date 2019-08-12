@@ -5,6 +5,5 @@ import (
 )
 
 var (
-	e                    = echo.New()
-	userJSON             = `{"username":"teak","password":"teak"}`
+	e                    = echo.New()	
 )
