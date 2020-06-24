@@ -12,7 +12,24 @@ import (
 	"teak/modules/test"
 )
 
-func TestLoginUser(t *testing.T) {
+// Must contain "Integration" in method name
+func TestLoginUserUnitTest(t *testing.T) {
+	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(test.UserJSON))
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/login")
+	h := LoginUser(c)
+
+	t.Log("run unit")
+	
+	// Assertions
+	if assert.NoError(t, h) {
+		assert.Equal(t, http.StatusOK, rec.Code)
+	}
+}
+
+func TestLoginUserIntegrationTest(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/", strings.NewReader(test.UserJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
@@ -20,6 +37,8 @@ func TestLoginUser(t *testing.T) {
 	c.SetPath("/login")
 	h := LoginUser(c)
 	
+	t.Log("run integration")
+
 	// Assertions
 	if assert.NoError(t, h) {
 		assert.Equal(t, http.StatusOK, rec.Code)

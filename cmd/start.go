@@ -38,7 +38,7 @@ var startCmd = &cobra.Command{
 		// Handler for putting teak request and response timestamp. This used for get elapsed time
 		e.Use(ServiceRequestTime)
 
-		routes.API(e)
+		routes.Api(e)
 
 		// Start server
 		// e.Logger.Fatal(e.Start(":8000"))

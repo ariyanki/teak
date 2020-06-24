@@ -46,9 +46,12 @@ Testing
 -------
 1. Create mysql database schema for testing
 2. copy cfg/example.json to cfg/testing.json and configure it
-3. Run test script from project root:
-    - All Test: ./script/testing.sh ./...
-    - Single Test: ./script/testing.sh ./folder/folder/
+3. Run unit test script from project root:
+    - All Test: ./script/unit_testing.sh ./...
+    - Single Test: ./script/unit_testing.sh ./folder/folder/
+4. Run unit test script from project root:
+    - All Test: ./script/integration_testing.sh ./...
+    - Single Test: ./script/integration_testing.sh ./folder/folder/
 4. Or run command manually from project root:
     - Set Enviroment Variable from source code directory:
         - export TEAK_ENV=testing
@@ -56,6 +59,12 @@ Testing
     - Reset testing database: go run main.go migrate reset
     - Database migration: go run main.go migrate up
     - Run data seeder: go run main.go seed
-    - Run test command:
+    - Run all test command:
         - All Test: go test ./...
         - Single Test: go test ./folder/folder/
+    - Run unit test command:
+        - All Unit Test: go test -run UnitTest ./...
+        - Single Unit Test: go test -run UnitTest ./folder/folder/
+    - Run integration test command (Method name form integration test must contain "Integration" word):
+        - All Integration Test: go test -run IntergrationTest ./...
+        - Single Integration Test: go test -run IntergrationTest ./folder/folder/
